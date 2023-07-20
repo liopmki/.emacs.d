@@ -1,0 +1,81 @@
+#+title: 专业 Emacs 入门教程
+#+description: 我的笔记
+
+* Tutorial
+
+** Key
+
+*** 屏幕
+- C-v
+- M-v
+- C-l
+- C-M-v
+  滚动下方的window
+
+*** 光标移动
+- C-n
+- C-p
+- C-f
+- C-b
+- C-a
+- C-e
+- M-f
+- M-b
+- M-a
+- M-e
+- M-<
+- M->
+- C-x o
+  将光标移动到下方的window
+
+*** 参数前缀
+- C-u
+
+*** Windows
+- C-x 1
+- C-x 2
+
+*** Buffer
+- C-x C-b
+  list buffer
+- C-x b
+  switch buffer
+- C-x s
+  save buffers
+
+*** 删除
+- <DEL>
+- C-d
+- M-<DEL>
+- M-d
+- C-k
+- M-k
+
+*** Search
+- C-s
+- C-r
+
+*** 粘贴
+- M-w
+
+*** 粘贴
+- C-y
+- M-y
+
+*** 撤销
+- C-/
+
+*** File
+- C-x C-f
+- C-x C-s
+
+*** quit
+- C-x C-c
+- C-g
+  终止命令
+
+** Command
+M-x <command>
+
+*** 字符串替换
+- repl TAB

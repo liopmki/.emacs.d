@@ -31,6 +31,21 @@
 *** 参数前缀
 - C-u
 
+*** 跳转
+- M-g M-g
+  跳转到行号
+
+*** 空行
+- C-o
+  下一行添加一个空行
+- C-x C-o
+  删除这一行下面的空行
+
+*** 字号
+- C-x C-=
+- C-x C--
+- C-x C-0
+
 *** Windows
 - C-x 1
 - C-x 2
@@ -42,6 +57,8 @@
   switch buffer
 - C-x s
   save buffers
+- C-x k
+  kill buffer
 
 *** 删除
 - <DEL>
@@ -68,6 +85,10 @@
 *** File
 - C-x C-f
 - C-x C-s
+- C-x C-j
+  打开当前文件所在的目录
+- C-x d
+  文件管理（n、p移动，m for mark，u for unmark，d for delete，x for Execute）
 
 *** quit
 - C-x C-c

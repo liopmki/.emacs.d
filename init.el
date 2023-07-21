@@ -9,14 +9,14 @@
 (setq inhibit-startup-message t)             ; 关闭启动 Emacs 时的欢迎界面
 (setq make-backup-files nil)                 ; 关闭文件自动备份
 ;(add-hook 'prog-mode-hook #'hs-minor-mode)   ; 编程模式下，可以折叠代码块
-(global-display-line-numbers-mode 1)         ; 在 Window 显示行号
+(global-display-line-numbers-mode t)         ; 在 Window 显示行号
 ;(tool-bar-mode -1)                           ; （熟练后可选）关闭 Tool bar
 (when (display-graphic-p) (toggle-scroll-bar -1)) ; 图形界面时关闭滚动条
 
 ;(savehist-mode 1)                            ; （可选）打开 Buffer 历史记录保存
-(setq display-line-numbers-type 'relative)   ; （可选）显示相对行号
-(add-to-list 'default-frame-alist '(width . 90))  ; （可选）设定启动图形界面时的初始 Frame 宽度（字符数）
-(add-to-list 'default-frame-alist '(height . 40)) ; （可选）设定启动图形界面时的初始 Frame 高度（字符数）
+;(setq display-line-numbers-type 'relative)   ; （可选）显示相对行号
+(add-to-list 'default-frame-alist '(width . 80))  ; （可选）设定启动图形界面时的初始 Frame 宽度（字符数）
+(add-to-list 'default-frame-alist '(height . 30)) ; （可选）设定启动图形界面时的初始 Frame 高度（字符数）
 (setq ring-bell-function 'ignore) ;; turn off alarms bell
 
 ;; global key setting
@@ -24,6 +24,11 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;(global-set-key (kbd "C-j") nil)
 ;(global-set-key (kbd "C-j C-k") 'kill-whole-line)
+;(prefer-coding-system 'utf-8) 		;default encoding
+(setq-default buffer-file-coding-system 'utf-8-unix) ;default EOL config
+(set-language-environment "UTF-8")
+(setq scroll-conservatively 101 scroll-margin 8) ;set scrolloff = 8
+(setq-default major-mode 'text-mode)
 
 ;; package mirror
 (require 'package)
@@ -38,6 +43,17 @@
   (require 'use-package))
 
 ;;; UI config
+;; set font
+;(add-to-list 'default-frame-alist
+;             '(font . "LXGW WenKai Mono-14"))
+;; 设置英文字体
+;(set-fontset-font t 'han (font-spec :family "LXGW Wen Kai Mono"))
+(dolist (charset '(kana han symbol cjk-misc bopomofo))
+  (set-fontset-font t charset (font-spec :family "LXGW WenKai Mono" :height 139)))
+
+;; 默认全屏打开
+(setq default-frame-alist '((fullscreen . maximized)))
+
 ;; color theme
 (use-package doom-themes
   :ensure t
@@ -45,13 +61,34 @@
   ;; Global settings (defaults)
   (setq doom-themes-enable-bold nil    ; if nil, bold is universally disabled
 	doom-themes-enable-italic t) ; if nil, italics is universally disabled
-  (load-theme 'doom-monokai-octagon t)
-  (doom-themes-treemacs-config))
+  (load-theme 'doom-dracula t)
+;  (doom-themes-treemacs-config)		
+  (doom-themes-org-config))
 
 ;; all-the-icons
 (use-package all-the-icons
   :ensure t
   :if (display-graphic-p))
+
+;; show date and time
+(setq display-time-day-and-date t)
+(display-time-mode t)
+
+;; doom mode line
+(use-package minions
+  :ensure t
+  :hook doom-modeline-mode)
+(use-package doom-modeline
+  :ensure t
+  :hook (after-init . doom-modeline-mode)
+  :custom
+  (doom-modeline-unicode-fallback t)
+  :config
+  (setq doom-modeline-height 1) ; optional
+  (custom-set-faces
+   '(mode-line ((t (:height 0.85))))
+   '(mode-line-active ((t (:height 0.85)))) ; For 29+
+   '(mode-line-inactive ((t (:height 0.85))))))
 
 ;;; UI config end
 
@@ -60,9 +97,29 @@
 ;; org-modern-mode 美化 Org-mode
 (use-package org-modern
   :ensure t
-  :hook (org-mode . org-modern-mode))
+  :custom
+  (org-modern-table nil)
+  :hook
+  (org-mode . org-modern-mode)
+  (org-agenda-finalize . org-modern-agenda))
 
 (setq org-startup-indented t) ;; 默认打开缩进模式
+
+(use-package valign
+  :ensure t
+  :hook(org-mode . valign-mode))
+
+(setq org-directory (file-truename "C:\\Users\\Administrator\\OneDrive\\Project\\notes\\org\\"))
+
+(setq system-time-locale "C")
+(format-time-string "%Y-%m-%d %a")
+
+;; Org-mode html-export config
+(setq
+ org-html-validation-link nil		;去除这个验证
+ org-html-head "<link href='http://gongzhitaao.org/orgcss/org.css' rel='stylesheet'>" ;使用这种 css 样式
+ org-html-head-include-default-style nil  ;去除默认的样式
+ org-export-with-sub-superscripts "^:{}") ;使用 LaTeX 形式的上下标
 
 ;;; Org-mode config end
 
@@ -312,8 +369,6 @@
 
 ;;; LSP config end
 
-(provide 'init)
-
 ;;;; init.el end
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -322,13 +377,14 @@
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
  '(current-language-environment "UTF-8")
- '(display-line-numbers-type 'relative)
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
-   '(embark-consult embark orderless vertico yasnippet-snippets yasnippet company all-the-icons use-package)))
+   '(doom-modeline minions embark-consult embark orderless vertico yasnippet-snippets yasnippet company all-the-icons use-package)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "霞鹜文楷等宽" :foundry "outline" :slant normal :weight normal :height 139 :width normal)))))
+ '(default ((t (:family "FiraCode Nerd Font" :foundry "outline" :slant normal :weight normal :height 139 :width normal)))))
+
+(provide 'init)

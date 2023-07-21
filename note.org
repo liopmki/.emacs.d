@@ -1,5 +1,6 @@
 #+title: 专业 Emacs 入门教程
 #+description: 我的笔记
+#+AUTHOR: Liopmki
 
 * Tutorial
 
@@ -9,7 +10,7 @@
 - C-v
 - M-v
 - C-l
-- C-M-v
+- C-M-v \\
   滚动下方的window
 
 *** 光标移动
@@ -25,20 +26,20 @@
 - M-e
 - M-<
 - M->
-- C-x o
+- C-x o \\
   将光标移动到下方的window
 
 *** 参数前缀
 - C-u
 
 *** 跳转
-- M-g M-g
+- M-g M-g \\
   跳转到行号
 
 *** 空行
-- C-o
+- C-o \\
   下一行添加一个空行
-- C-x C-o
+- C-x C-o \\
   删除这一行下面的空行
 
 *** 字号
@@ -51,13 +52,13 @@
 - C-x 2
 
 *** Buffer
-- C-x C-b
+- C-x C-b \\
   list buffer
-- C-x b
+- C-x b \\
   switch buffer
-- C-x s
+- C-x s \\
   save buffers
-- C-x k
+- C-x k \\
   kill buffer
 
 *** 删除
@@ -85,9 +86,9 @@
 *** File
 - C-x C-f
 - C-x C-s
-- C-x C-j
+- C-x C-j \\
   打开当前文件所在的目录
-- C-x d
+- C-x d \\
   文件管理（n、p移动，m for mark，u for unmark，d for delete，x for Execute）
 
 *** quit
@@ -101,7 +102,3 @@ M-x <command>
 *** 字符串替换
 - repl TAB
 
-
------
-
-  

@@ -30,6 +30,10 @@
 (setq scroll-conservatively 101 scroll-margin 8) ;set scrolloff = 8
 (setq-default major-mode 'text-mode)
 
+;;; [customize]
+(add-hook 'after-init-hook 'auto-save-visited-mode) ;失去焦点自动保存文件
+;;; [customize end]
+
 ;; package mirror
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)

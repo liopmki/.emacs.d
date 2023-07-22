@@ -75,9 +75,10 @@
 (display-time-mode t)
 
 ;; doom mode line
-(use-package minions
-  :ensure t
-  :hook doom-modeline-mode)
+;; (use-package minions
+;;   :ensure t
+;;   :hook doom-modeline-mode
+  ;; )
 (use-package doom-modeline
   :ensure t
   :hook (after-init . doom-modeline-mode)

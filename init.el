@@ -122,7 +122,7 @@
 ;; Org-mode html-export config
 (setq
  org-html-validation-link nil		;去除这个验证
- org-html-head "<link href='http://gongzhitaao.org/orgcss/org.css' rel='stylesheet'>" ;使用这种 css 样式
+ org-html-head "<link href='C:\\Users\\Administrator\\OneDrive\\Profile\\orgcss\\org.css' rel='stylesheet'>" ;使用这种 css 样式
  org-html-head-include-default-style nil  ;去除默认的样式
  org-export-with-sub-superscripts "^:{}") ;使用 LaTeX 形式的上下标
 

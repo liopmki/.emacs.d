@@ -1,5 +1,7 @@
 ;;;; init.el start
 
+(setq gc-cons-threshold most-positive-fixnum)
+
 ;; basic option
 (electric-pair-mode t)                       ; 自动补全括号
 (add-hook 'prog-mode-hook #'show-paren-mode) ; 编程模式下，光标在括号上时高亮另一个括号
@@ -24,9 +26,9 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;(global-set-key (kbd "C-j") nil)
 ;(global-set-key (kbd "C-j C-k") 'kill-whole-line)
-;(prefer-coding-system 'utf-8) 		;default encoding
+(prefer-coding-system 'utf-8) 		;default encoding
 (setq-default buffer-file-coding-system 'utf-8-unix) ;default EOL config
-(set-language-environment "UTF-8")
+;(set-language-environment "UTF-8")
 (setq scroll-conservatively 101 scroll-margin 8) ;set scrolloff = 8
 (setq-default major-mode 'text-mode)
 
@@ -374,6 +376,45 @@
 
 ;;; LSP config end
 
+;;; input method
+;; (use-package popup
+;;   :ensure t) ; 选词框
+;; (use-package pyim
+;;   :ensure t
+;;   :init
+;;   (use-package pyim-basedict
+;;     :ensure t
+;;     :init
+;;     (pyim-basedict-enable))
+;;   :config
+
+;;   (setq default-input-method "pyim")
+  
+;;   (setq pyim-default-scheme 'xiaohe-shuangpin)
+
+;;   (setq pyim-page-length 4)
+
+;;   (require 'popup)
+;;   (setq pyim-page-tooltip '(popup minibuffer))
+;;   (setq pyim-page-style 'one-line)
+
+;;   (setq-default pyim-punctuation-translate-p '(no)); 总是输入半角标点.
+
+;;   ;; 设置 pyim 的探针
+;;   ;; 英文模式 探针
+;;   (setq-default pyim-english-input-switch-functions
+;; 		'(pyim-probe-org-speed-commands
+;; 		  pyim-probe-org-structure-template
+;; 		  pyim-probe-dynamic-english))
+  
+;;   :hook
+;;   (emacs-startup . (lambda () (pyim-restart-1 t))) ; 自动加载词库
+;;   )
+
+
+;; (global-set-key (kbd "C-\\") 'toggle-input-method)
+;;; input method end
+
 ;;;; init.el end
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -381,7 +422,6 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
- '(current-language-environment "UTF-8")
  '(global-display-line-numbers-mode t)
  '(package-selected-packages
    '(doom-modeline minions embark-consult embark orderless vertico yasnippet-snippets yasnippet company all-the-icons use-package)))

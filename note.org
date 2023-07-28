@@ -102,3 +102,8 @@ M-x <command>
 *** 字符串替换
 - repl TAB
 
+* pyim 中文输入测试
+
+你好我是谁可以输入中文
+
+hello world
